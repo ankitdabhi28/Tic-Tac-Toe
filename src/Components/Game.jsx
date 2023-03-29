@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 // import Square from "./Square";
-
 import { useSelector } from "react-redux";
-import Board22 from "./Board22";
+import Board from "./Board";
 import { getCurrentMove } from "./Redux/ForState/CurrentMove";
+import { getHistory } from "./Redux/ForState/History";
 // import calculateWinner from "./CalculateWinner";
 import { getXisNext } from "./Redux/ForState/setXIsNext";
 // import { getSquare } from "./Redux/ForState/Squares";
@@ -118,15 +118,21 @@ function Game() {
   // const [xIsNext, setXIsNext] = useState(true);
 //   const [currentMove, setCurrentMove] = useState(0);
   const MyMove = useSelector((state) => state.CurrentMove.CurrentMove);
+const MyHistory = useSelector((state) => state.History.History);
 
-  const [history, setHistory] = useState([Array(9).fill(null)]);
 
-  const currentSquares = history[MyMove];
+
+//   const [history, setHistory] = useState([Array(9).fill(null)]);
+
+  const currentSquares = MyHistory[MyMove];
   console.log(currentSquares, "logs ");
 
   const handlePlay = (nextSquares) => {
-    const nextHistory = [...history.slice(0, MyMove + 1), nextSquares];
-    setHistory(nextHistory);
+    const nextHistory = [...MyHistory.slice(0, MyMove + 1), nextSquares];
+
+    dispatch(getHistory(nextHistory))
+
+    // setHistory(nextHistory);
     // setCurrentMove(nextHistory.length - 1);
     dispatch(getCurrentMove(nextHistory.length - 1))
 
@@ -134,7 +140,7 @@ function Game() {
     dispatch(getXisNext(!next));
   };
 
-  const moves = history.map((squares, move) => {
+  const moves = MyHistory.map((squares, move) => {
     let description;
     if (move > 0) {
       description = "Go to move #" + move;
@@ -159,7 +165,7 @@ function Game() {
   return (
     <div className="game">
       <div className="game-board">
-        <Board22 next={next} squares={currentSquares} onPlay={handlePlay} />
+        <Board next={next} squares={currentSquares} onPlay={handlePlay} />
       </div>
       <div className="game-info">
         <ol>{moves}</ol>

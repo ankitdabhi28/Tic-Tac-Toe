@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import Square from "./Square";
-import { useSelector } from "react-redux";
-// import CalculateWinner from "./CalculateWinner";
-import { getXisNext } from "./Redux/ForState/setXIsNext";
+// import { useSelector } from "react-redux";
+import calculateWinner from "./CalculateWinner";
+// import { getXisNext } from "./Redux/ForState/setXIsNext";
 // import { getSquare } from "./Redux/ForState/Squares";
-import { dispatch } from "./Redux/store";
+// import { dispatch } from "./Redux/store";
 // import { getInputState } from "./Redux/ForState/InputState";
 // import { dispatch } from "./Redux/store";
 
@@ -104,82 +104,65 @@ function Board({ next, squares, onPlay }) {
   );
 }
 
-// Game Component are not created
-function Game() {
+export default Board ;
+
+// // Game Component are not created
+// function Game() {
 
 
-  const next = useSelector((state) => state.XisNext.XisNext);
-  console.log(next, "aaa");
+//   const next = useSelector((state) => state.XisNext.XisNext);
+//   console.log(next, "aaa");
 
-  // redux are created
-  // const [xIsNext, setXIsNext] = useState(true);
+//   // redux are created
+//   // const [xIsNext, setXIsNext] = useState(true);
     
 
-  const [currentMove, setCurrentMove] = useState(0);
+//   const [currentMove, setCurrentMove] = useState(0);
   
-  const [history, setHistory] = useState([Array(9).fill(null)]);
-  const currentSquares = history[currentMove];
-  console.log(currentSquares, "logs ");
+//   const [history, setHistory] = useState([Array(9).fill(null)]);
+//   const currentSquares = history[currentMove];
+//   console.log(currentSquares, "logs ");
 
-  const handlePlay = (nextSquares) => {
-    const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
-    setHistory(nextHistory);
-    setCurrentMove(nextHistory.length - 1);
-    dispatch(getXisNext(!next));
-  };
+//   const handlePlay = (nextSquares) => {
+//     const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
+//     setHistory(nextHistory);
+//     setCurrentMove(nextHistory.length - 1);
+//     dispatch(getXisNext(!next));
+//   };
 
-  const moves = history.map((squares, move) => {
-    let description;
-    if (move > 0) {
-      description = "Go to move #" + move;
-    } else {
-      description = "Go to game start";
-    }
-    return (
-      <li key={move}>
-        <button onClick={() => jumpTo(move)}>{description}</button>
-      </li>
-    );
-  });
+//   const moves = history.map((squares, move) => {
+//     let description;
+//     if (move > 0) {
+//       description = "Go to move #" + move;
+//     } else {
+//       description = "Go to game start";
+//     }
+//     return (
+//       <li key={move}>
+//         <button onClick={() => jumpTo(move)}>{description}</button>
+//       </li>
+//     );
+//   });
 
-  const jumpTo = (nextMove) => {
-    setCurrentMove(nextMove);
+//   const jumpTo = (nextMove) => {
+//     setCurrentMove(nextMove);
 
-    dispatch(getXisNext(!nextMove % 2 === 0))
-    // todo
-  };
+//     dispatch(getXisNext(!nextMove % 2 === 0))
+//     // todo
+//   };
 
-  return (
-    <div className="game">
-      <div className="game-board">
-        <Board next={next} squares={currentSquares} onPlay={handlePlay} />
-      </div>
-      <div className="game-info">
-        <ol>{moves}</ol>
-      </div>
-    </div>
-  );
-}
+//   return (
+//     <div className="game">
+//       <div className="game-board">
+//         <Board next={next} squares={currentSquares} onPlay={handlePlay} />
+//       </div>
+//       <div className="game-info">
+//         <ol>{moves}</ol>
+//       </div>
+//     </div>
+//   );
+// }
 
-export default Game;
+// export default Game;
 
 // calculateWinner Component creacted
-function calculateWinner(squares) {
-  const lines = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-  ];
-  for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i];
-    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
-    }
-  }
-  return null;
-}
