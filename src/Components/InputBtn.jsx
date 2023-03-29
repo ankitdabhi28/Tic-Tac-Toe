@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 // import Square from "./Square";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import { getXisNext } from "./Redux/ForState/setXIsNext";
+// import { getSquare } from "./Redux/ForState/Squares";
+import { dispatch } from "./Redux/store";
 // import { getInputState } from "./Redux/ForState/InputState";
 // import { dispatch } from "./Redux/store";
 
 function Square({value, onSquareClick}) {
-
-
-
-
 // const [value, setvalue] = useState(null)
 
   // const data = useSelector((state) => state.InputState.InputState);
@@ -21,15 +20,15 @@ function Square({value, onSquareClick}) {
   //   setvalue("State")
   // }
 
-
-
-  
   return (<>
     {/* <button className="btn" onClick={handleClick}>
       {data}
     </button> */}
-    <button className="btn" onClick={onSquareClick} > {value} </button>
+
+    <button className="btn" onClick={onSquareClick} > {value} </button> 
+    
     {/* onClick={handleClick} */}
+
     </>
 
   );
@@ -39,20 +38,43 @@ function Square({value, onSquareClick}) {
 //Main Component 
 function InputBtn() {
 
-  // eslint-disable-next-line
+// for array value 
   const [squares, setSquares] = useState(Array(9).fill(null));
+  console.log(squares,"squares");
   
-  
+  // dispatch(Squares(squares))
+// const s = useSelector((state)=>state.Squares.Squares)
+// console.log(s, "square");
+
+  // for this toggle X & O
+  const next = useSelector((state) => state.XisNext.XisNext)
+  console.log(next,"next");
+
   function handleClick(i) {
+
+    // no repeat value bt clickimg
+    if (squares[i]) { return; }
+
+    // all slice that data in
     const nextSquares = squares.slice();
-    nextSquares[i] = "X";
+
+    if (next) {
+      nextSquares[i] = "X";
+    } else {
+      nextSquares[i] = "O";
+    }
+
+    // nextSquares[i] = "X";
     setSquares(nextSquares);
+    // dispatch(getSquare(nextSquares))
+    dispatch(getXisNext(!next))
+    // setXIsNext(!xIsNext);
   }
 
 
   
   return (
-    <div>
+    <div className="main-box">
       InputBtn
       <div className="box">
         <Square value={squares[0]}  onSquareClick={() => handleClick(0)}   />
