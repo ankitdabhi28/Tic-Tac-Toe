@@ -116,13 +116,11 @@ function Game() {
 
   // redux are created
   // const [xIsNext, setXIsNext] = useState(true);
-//   const [currentMove, setCurrentMove] = useState(0);
+  //   const [currentMove, setCurrentMove] = useState(0);
   const MyMove = useSelector((state) => state.CurrentMove.CurrentMove);
-const MyHistory = useSelector((state) => state.History.History);
+  const MyHistory = useSelector((state) => state.History.History);
 
-
-
-//   const [history, setHistory] = useState([Array(9).fill(null)]);
+  //   const [history, setHistory] = useState([Array(9).fill(null)]);
 
   const currentSquares = MyHistory[MyMove];
   console.log(currentSquares, "logs ");
@@ -154,6 +152,17 @@ const MyHistory = useSelector((state) => state.History.History);
     );
   });
 
+//   const play = MyHistory.map((squares, move) => {
+// let dsa;
+//     if (move === 0) {
+//       dsa = "game"
+//       }   
+//       return(  
+//         <button onClick={() => jumpTo(move)}>{dsa}</button>
+//     )     
+//   });
+
+
   const jumpTo = (nextMove) => {
     dispatch(getCurrentMove(nextMove));
     // setCurrentMove(nextMove);
@@ -162,11 +171,17 @@ const MyHistory = useSelector((state) => state.History.History);
     // todo
   };
 
+  console.log(MyHistory,"MyHistory");
   return (
     <div className="game">
       <div className="game-board">
         <Board next={next} squares={currentSquares} onPlay={handlePlay} />
       </div>
+      <br />
+
+<div><button onClick={()=>{dispatch(getCurrentMove(0))}}>Play Again</button></div>
+{/* <div>{play}</div> */}
+<br />
       <div className="game-info">
         <ol>{moves}</ol>
       </div>

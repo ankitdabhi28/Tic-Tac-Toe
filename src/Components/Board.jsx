@@ -73,6 +73,8 @@ function Board({ next, squares, onPlay }) {
     // setXIsNext(!xIsNext);
   }
 
+  
+
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
@@ -100,6 +102,7 @@ function Board({ next, squares, onPlay }) {
         <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
         <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
       </div>
+
     </div>
   );
 }
