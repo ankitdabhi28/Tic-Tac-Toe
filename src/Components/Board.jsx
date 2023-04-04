@@ -73,57 +73,54 @@ function Board({ next, squares, onPlay }) {
     // setXIsNext(!xIsNext);
   }
 
-  
-
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
-    status =  "`" + winner + "`" + "is Winner!!!";
+    // eslint-disable-next-line
+    status = "`" + winner + "`" + "is Winner!!!";
   } else {
     status = "Next player: " + (next ? "X" : "O");
   }
 
   return (
-    <div className="main-box">
-  
-  <div>Let's Play Tic - Tac - Toe</div>
-  <br />
-      <div className="box">
+    <div className="container main-sec col-12">
+      <div className="row boxs card">
+        <div className="get-box">
+      <br/>
+      <div className="btns">
         <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
         <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
         <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
       </div>
-      <div className="box">
+      <div className="">
         <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
         <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
         <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
       </div>
-      <div className="box">
+      <div className="">
         <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
         <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
         <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
       </div>
       <br />
-      <div className="status">{status}</div>
-    </div>
+      <div className=""> <h4> {status } </h4></div>
+    </div></div></div>
   );
 }
 
-export default Board ;
+export default Board;
 
 // // Game Component are not created
 // function Game() {
-
 
 //   const next = useSelector((state) => state.XisNext.XisNext);
 //   console.log(next, "aaa");
 
 //   // redux are created
 //   // const [xIsNext, setXIsNext] = useState(true);
-    
 
 //   const [currentMove, setCurrentMove] = useState(0);
-  
+
 //   const [history, setHistory] = useState([Array(9).fill(null)]);
 //   const currentSquares = history[currentMove];
 //   console.log(currentSquares, "logs ");

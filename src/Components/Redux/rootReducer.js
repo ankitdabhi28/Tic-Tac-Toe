@@ -10,8 +10,7 @@ InputState
 ,Squares
 ,CurrentMove
 ,History
-
-     };
+};
   
   export default rootReducer;
   

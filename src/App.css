@@ -1,17 +1,52 @@
-.btn{
-    background: #fff;
-    border: 1px solid #999;
-    float: left;
-    font-size: 24px;
-    font-weight: bold;
-    line-height: 34px;
-    padding: 0;
-    text-align: center;
-    height: 50px;
-    width: 50px;
-    }
-.box:after{
-    clear: both;
-    content: '';
-    display: table;
+.btn {
+  background: #ff7b7b;
+  border: 1px solid #f71010;
+  /* float: left; */
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 34px;
+  padding: 0;
+  text-align: center;
+  height: 60px;
+  width: 60px;
+}
+.boxs {
+  text-align: center;
+  padding: 20px;
+  /* margin-top: 30px; */
+  background-color: rgb(255, 211, 175);
+  color: rgb(255, 0, 0);
+  height: 500px;
+}
+.get-box {
+  margin: auto;
+}
+.moves-data {
+  text-align: center;
+  background-color: rgb(255, 211, 175);
+}
+.moves-data div {
+  padding: 20px 0px 0px 20px;
+  color: #000;
+}
+ol li button {
+  border: 1px solid #f71010;
+  margin-bottom: 10px;
+  background-color: #ff7b7b;
+}
+.moves-data div button {
+  border: 1px solid #f71010;
+  background-color: #ff7b7b;
+}
+.lets {
+  /* font-size: 70px; */
+  font-size: 50px;
+  padding: 50px;
+  color: rgb(255, 0, 0);
+}
+.app-com {
+  padding-bottom: 50px;
+  background-color: rgb(255, 242, 231);
+  margin-top: 50px !important ;
+  margin: auto;
 }
