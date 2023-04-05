@@ -64,13 +64,13 @@ function Game() {
     <div className="container ">
       <div className="row justify-content-center">
       <div className="game-sec"></div>
-      <div className="col-4 ">
+      <div className="col-8 col-lg-5 col-md-9 ">
         <Board next={next} squares={currentSquares} onPlay={handlePlay} />
       </div>
       <br />
 
-      <div className="card col-3 moves-data">
-        <div className="row col-5  ">
+      <div className="card col-lg-5 col-8  moves-data">
+        <div className="row  col-md-12 col-lg-4 col-12  ">
           <button
             onClick={() => {
               dispatch(getCurrentMove(0));
